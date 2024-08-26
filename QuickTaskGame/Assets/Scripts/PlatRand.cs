@@ -8,7 +8,7 @@ public class PlatRand : MonoBehaviour
     public GameObject ball;
     public Transform player;
     public float spawnDelay = 1f;
-    public float heightIncrement = 2f;
+    public float heightIncrement = 1.5f;
 
     private bool isSpawning = true;
     private float currentHeight = 1f;
@@ -22,7 +22,7 @@ public class PlatRand : MonoBehaviour
     // Update is called once per frame
     void SpawnPlatform()
     {
-        int randomPlatformIndex = Random.Range(3, platforms.Length);
+        int randomPlatformIndex = Random.Range(2, platforms.Length);
         int randomXPosition = Random.Range(-2, 2);
 
         Vector3 spawnPosition = new Vector3(randomXPosition, currentHeight, -9.5f);
