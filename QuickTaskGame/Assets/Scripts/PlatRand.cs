@@ -5,11 +5,12 @@ using UnityEngine;
 public class PlatRand : MonoBehaviour
 {
     public GameObject[] platforms;
+    public GameObject ball;
     public Transform player;
     public float spawnDelay = 1f;
     public float heightIncrement = 2f;
 
-    private bool isSpawning = false;
+    private bool isSpawning = true;
     private float currentHeight = 1f;
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class PlatRand : MonoBehaviour
     // Update is called once per frame
     void SpawnPlatform()
     {
-        int randomPlatformIndex = Random.Range(0, platforms.Length);
+        int randomPlatformIndex = Random.Range(3, platforms.Length);
         int randomXPosition = Random.Range(-2, 2);
 
         Vector3 spawnPosition = new Vector3(randomXPosition, currentHeight, -9.5f);
@@ -31,7 +32,7 @@ public class PlatRand : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player") && !isSpawning)
+        if (collision.gameObject == ball)
         {
             StartCoroutine(SpawnPlatformsContinuously());
             Debug.Log("Player has collided with " + collision.gameObject.name);
